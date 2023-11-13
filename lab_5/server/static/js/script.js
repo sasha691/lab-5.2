@@ -57,6 +57,10 @@ class App{
     load(){
         if(this.data){
             this.data.forEach(item => this.loadBlock(item))
+            document.querySelectorAll('.box').forEach(item => {
+                item.addEventListener('mouseover', () => this.mouseOver(item))
+                item.addEventListener('mouseout',() => this.mouseOut(item))
+            })
         }
     }
 
@@ -65,9 +69,33 @@ class App{
                 <div class="box">
                     <p>${item.name}</p>
                     <img src="${item.image.replace(/server/, '')}"/>
+                    <P class="money">${item.money} UAH</p>
+                    <a href="http://127.0.0.1:8000/server/${item.id}" class="next" style="display: none;">Next</a>
+                    <button class="buy" style="display: none;">Buy</button>
                 </div>
                 `)
     }
+
+    mouseOut(item){
+        const bthBuy = item.querySelector('.buy')
+        const nextPage = item.querySelector('.next')
+        nextPage.style.display = "none"
+        bthBuy.style.display = "none"
+    }
+
+    mouseOver(item){
+        const bthBuy = item.querySelector('.buy')
+        const nextPage = item.querySelector('.next')
+        nextPage.style.display = "inline"
+        bthBuy.style.display = "block"
+        bthBuy.addEventListener('click',this.buyClick)
+    }
+
+    buyClick(){
+        const basked = document.querySelector('.basket')
+        basked.showModal()
+    }
+
 }
 
 document.addEventListener('DOMContentLoaded',() => new App())
