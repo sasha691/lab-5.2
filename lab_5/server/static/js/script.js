@@ -18,9 +18,20 @@ class App{
         document.querySelectorAll('input[type = checkbox]').forEach(checkbox => {
             checkbox.addEventListener("change", () => {
                 if(checkbox.checked){
-                    this.filter(checkbox)
+                    this.new_data.push(this.data.filter(item => item.producers__compani === checkbox.dataset.checkbox))
+                    this.filter()
                 }
-                else if(this.allCheckboxOff()){
+                if(!checkbox.checked){
+                    this.new_data.forEach(item => {
+                        if(item[0].producers__compani === checkbox.dataset.checkbox){
+                            let index = this.new_data.indexOf(item)
+                            this.new_data.splice(index, 1)
+                        }
+                    })
+                    this.filter()
+                }
+                if(this.allCheckboxOff()){
+                    this.new_data = []
                     this.start()
                     this.load()
                 }
@@ -32,12 +43,10 @@ class App{
         return[...document.querySelectorAll('input[type = checkbox]')].every(checkbox => !checkbox.checked)
     }
 
-    filter(event){
+    filter(){
         if(this.data){
-            this.start()
-            let new_data 
-            this.new_data.push(this.data.filter(item => item.producers__compani === event.dataset.checkbox))
-            console.log(new_data)
+            this.start() 
+            this.new_data.forEach(item => this.loadBlock(item[0]))
         } 
     }
 
@@ -52,7 +61,6 @@ class App{
     }
 
     loadBlock(item){
-        console.log(item)
         document.querySelector('#main').insertAdjacentHTML('beforeend',`
                 <div class="box">
                     <p>${item.name}</p>
