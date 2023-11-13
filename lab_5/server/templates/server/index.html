@@ -1,0 +1,47 @@
+{% extends "server/layout.html" %}
+
+{% block body %}
+<div>
+    <h1>my site <small>tut shoci she</small></h1>
+</div>
+</header>
+<nav>
+<div>
+    <form action="#">
+        <input type="text" placeholder="Шукати">
+        <input type="submit">
+    </form>
+</div>
+<div>
+    <select name="" id="">
+        <option value="">мінімальна ціна</option>
+        <option value="">максимальна ціна</option>
+    </select>
+</div>
+<div>
+    <button>користувач</button>
+    <button>кошик</button>
+</div>  
+</nav>
+<main>
+<div class="sort"> 
+    <p>Виробник</p>
+    <ul>
+        <li><input data-checkbox="Samsung" type="checkbox"> Samsung</li>
+        <li><input data-checkbox="Apple" type="checkbox"> Apple</li>
+        <li><input data-checkbox="Xiaomi" type="checkbox"> Xiaomi</li>
+        <li><input data-checkbox="OPPO" type="checkbox"> OPPO</li>
+        <li><input data-checkbox="Vivo" type="checkbox"> Vivo</li>
+        <li><input data-checkbox="Lenovo" type="checkbox"> Lenovo</li>
+    </ul>
+    <p>Ціна</p>
+    <ul>
+        <li><input type="number" style="width: 70px;"></li>
+        <li><input type="number" style="width: 70px;"></li>
+    </ul>
+</div>
+<div  id="main">
+    
+</div>
+</main>
+{% endblock %}
