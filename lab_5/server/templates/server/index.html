@@ -6,17 +6,8 @@
 </div>
 </header>
 <nav>
-<div>
-    <form action="#">
-        <input type="text" placeholder="Шукати">
-        <input type="submit">
-    </form>
-</div>
-<div>
-    <select name="" id="">
-        <option value="">мінімальна ціна</option>
-        <option value="">максимальна ціна</option>
-    </select>
+<div class="search">
+    <input type="text" placeholder="Шукати">
 </div>
 <div>
     <button>користувач</button>
@@ -35,9 +26,9 @@
         <li><input data-checkbox="Lenovo" type="checkbox"> Lenovo</li>
     </ul>
     <p>Ціна</p>
-    <ul>
-        <li><input type="number" style="width: 70px;"></li>
-        <li><input type="number" style="width: 70px;"></li>
+    <ul id="money">
+        <li>max: <input type="number" style="width: 70px;"></li>
+        <li>min: <input type="number" style="width: 70px;"></li>
     </ul>
 </div>
 <div  id="main">

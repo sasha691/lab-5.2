@@ -37,6 +37,27 @@ class App{
                 }
             })
         })
+
+        document.querySelector('.search input').addEventListener('change',() => this.search())
+    }
+
+    search(){
+        const searchInput = document.querySelector('.search input').value
+        if(searchInput === ''){
+            this.start()
+            this.load()
+            return
+        }
+        this.data.forEach(item => {
+            this.start()
+            if(item.name.indexOf(searchInput)==0){
+                this.loadBlock(item)
+            }
+            if(document.querySelector('#main').innerHTML == ''){
+                document.querySelector('#main').innerHTML = `По запиту ${searchInput} нічого не знайдено`
+            }
+
+        })
     }
 
     allCheckboxOff(){
@@ -94,6 +115,7 @@ class App{
     buyClick(){
         const basked = document.querySelector('.basket')
         basked.showModal()
+        basked.querySelector('.close').addEventListener('click',() => basked.close())
     }
 
 }
