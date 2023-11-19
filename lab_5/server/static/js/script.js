@@ -39,6 +39,30 @@ class App{
         })
 
         document.querySelector('.search input').addEventListener('change',() => this.search())
+
+        $(function() {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 60000,
+                values: [0, 60000], 
+                slide: function(event, ui) {
+                $("#slider-value1").text(ui.values[0])
+                $("#slider-value2").text(ui.values[1])
+                },
+                change: function(event, ui) {
+                    self.start()
+                    self.data.forEach(item => {
+                        if(ui.values[0] <= item.money && ui.values[1] >= item.money) {
+                            self.loadBlock(item)
+                        }
+                    })
+                }
+            })
+    
+            $("#slider-value1").text($("#slider-range").slider("values", 0))
+            $("#slider-value2").text($("#slider-range").slider("values", 1))
+            })
     }
 
     search(){
@@ -117,7 +141,6 @@ class App{
         basked.showModal()
         basked.querySelector('.close').addEventListener('click',() => basked.close())
     }
-
 }
 
 document.addEventListener('DOMContentLoaded',() => new App())
