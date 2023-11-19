@@ -1,5 +1,28 @@
 {% extends "server/layout.html" %}
 
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        $(function() {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 100000,
+            values: [0, 100000], 
+            slide: function(event, ui) {
+            $("#slider-value1").text(ui.values[0])
+            $("#slider-value2").text(ui.values[1])
+            }
+        })
+
+        $("#slider-value1").text($("#slider-range").slider("values", 0))
+        $("#slider-value2").text($("#slider-range").slider("values", 1))
+        })
+    </script>
+{% endblock %}
+
 {% block body %}
 <div>
     <h1>my site <small>tut shoci she</small></h1>
@@ -26,10 +49,10 @@
         <li><input data-checkbox="Lenovo" type="checkbox"> Lenovo</li>
     </ul>
     <p>Ціна</p>
-    <ul id="money">
-        <li>max: <input type="number" style="width: 70px;"></li>
-        <li>min: <input type="number" style="width: 70px;"></li>
-    </ul>
+    <div id="slider-range"></div>
+    <div id="slider-values">
+        <span id="slider-value1"></span> - <span id="slider-value2"></span>
+    </div>
 </div>
 <div  id="main">
     

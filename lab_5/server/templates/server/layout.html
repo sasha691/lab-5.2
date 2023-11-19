@@ -5,15 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/normolaize.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main_style.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    {% block head %}
+    {% endblock %}
     <title>Lab 5</title>
 </head>
 <body>
     {% block body %}
     {% endblock %}
     <dialog class="basket">
+        <div id="dialogImage"></div>
+        <div id="dialogInformation"></div>
         <button class="close">&times;</button>
     </dialog>
 </body>
