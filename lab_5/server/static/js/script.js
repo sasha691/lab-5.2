@@ -48,12 +48,12 @@ class App{
             this.load()
             return
         }
+        this.start()
         this.data.forEach(item => {
-            this.start()
-            if(item.name.indexOf(searchInput)==0){
+            if(item.name.toUpperCase().indexOf(searchInput.toUpperCase())==0){
                 this.loadBlock(item)
             }
-            if(document.querySelector('#main').innerHTML == ''){
+            else if(document.querySelector('#main').innerHTML == ''){
                 document.querySelector('#main').innerHTML = `По запиту ${searchInput} нічого не знайдено`
             }
 

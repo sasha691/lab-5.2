@@ -3,7 +3,6 @@
 {% block head %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
     <script>
         $(function() {
         $("#slider-range").slider({
@@ -21,6 +20,7 @@
         $("#slider-value2").text($("#slider-range").slider("values", 1))
         })
     </script>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
 
 {% block body %}
