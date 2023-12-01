@@ -116,7 +116,7 @@ class App{
                     <img src="${item.image.replace(/server/, '')}"/>
                     <P class="money">${item.money} UAH</p>
                     <a href="http://127.0.0.1:8000/server/${item.id}" class="next" style="display: none;">Next</a>
-                    <button class="buy" style="display: none;">Buy</button>
+                    <button data-buy="${item.id}" class="buy" style="display: none;">Buy</button>
                 </div>
                 `)
     }
@@ -133,13 +133,22 @@ class App{
         const nextPage = item.querySelector('.next')
         nextPage.style.display = "inline"
         bthBuy.style.display = "block"
-        bthBuy.addEventListener('click',this.buyClick)
+        bthBuy.addEventListener('click',() => this.buyClick(bthBuy.dataset.buy))
     }
 
-    buyClick(){
+    buyClick(event){
         const basked = document.querySelector('.basket')
         basked.showModal()
         basked.querySelector('.close').addEventListener('click',() => basked.close())
+        console.log(event)
+        this.data.forEach(item => {
+            if(item.id == event){
+                document.querySelector('#dialogName').innerHTML = `<p>${item.name}</p>`
+                document.querySelector('#dialogImage').innerHTML = `<img src="${item.image.replace(/server/, '')}"/>`
+                document.querySelector('#dialogInformation').innerHTML = `<a href="http://127.0.0.1:8000/server/${item.id}">Next</a>`
+            }
+            
+        })
     }
 }
 

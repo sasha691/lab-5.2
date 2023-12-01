@@ -17,8 +17,13 @@
     {% block body %}
     {% endblock %}
     <dialog class="basket">
-        <div id="dialogImage"></div>
-        <div id="dialogInformation"></div>
+        <form action="{% url 'basket' %}" method="post">
+            {% csrf_token %}
+            <span id="dialogName"></span>
+            <span id="dialogImage"></span>
+            <span id="dialogInformation"></span>
+            <input type="submit">
+        </form>
         <button class="close">&times;</button>
     </dialog>
 </body>

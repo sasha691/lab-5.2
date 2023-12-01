@@ -1,0 +1,27 @@
+{% extends 'server/layout.html' %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div id="main">
+            <div>
+                {% if message %}
+                    <span>{{ message }}</span>
+                {% endif %}
+            </div>
+            <div id="login">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" placeholder="username" name="username">
+                    <input type="password" placeholder="password" name="password">
+                    <input type="submit" value="login">
+                </form>
+            </div>
+        </div>
+        <a href="{% url 'logout' %}">logout</a>
+    </main>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'server/layout.html' %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/basket.css' %}">
+    <script src="{% static 'js/basket.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <main>
+        <ul id="basketList">
+            <div>{{ info }}</div>
+            <div>{{ user }}</div>
+        </ul>
+    </main>
+{% endblock %}

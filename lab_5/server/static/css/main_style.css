@@ -1,13 +1,13 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgba(148, 148, 148, 0.836);
+  background-color: #949494;
 }
 
 header {
   display: flex;
   justify-content: center;
   text-align: center;
-  background-color: rgba(148, 148, 148, 0.836);
+  background-color: #949494;
 }
 
 nav {
@@ -20,9 +20,31 @@ nav div {
 
 main {
   display: flex;
-  background-color: rgba(148, 148, 148, 0.836);
+  background-color: #949494;
   flex-wrap: wrap;
   align-content: start;
+}
+
+dialog {
+  border: 1px;
+  background-color: #949494;
+}
+dialog button {
+  position: absolute;
+  bottom: 90%;
+  left: 90%;
+}
+dialog #dialogImage img {
+  height: 200px;
+  border: 1px solid black;
+  border-radius: 5%;
+}
+dialog #dialogName p {
+  margin-left: 20%;
+  font-size: 20px;
+}
+dialog #dialogInformation a {
+  margin: 30%;
 }
 
 /*# sourceMappingURL=main_style.css.map */

@@ -1,4 +1,4 @@
-$color-main: rgba(148, 148, 148, 0.836);
+$color-main: rgb(148, 148, 148);
 $color-nav: rgb(131, 131, 131);
 
 body {
@@ -27,4 +27,32 @@ main {
     background-color: $color-main;
     flex-wrap: wrap;
     align-content: start;
+}
+
+dialog {
+    border: 1px;
+    background-color: $color-main;
+    button {
+        position: absolute;
+        bottom: 90%;
+        left: 90%;
+    }
+    #dialogImage {
+        img {
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 5%;
+        }
+    }
+    #dialogName {
+        p {
+            margin-left: 20%;
+            font-size: 20px;
+        }
+    }
+    #dialogInformation {
+        a {
+            margin: 30%;
+        }
+    }
 }
