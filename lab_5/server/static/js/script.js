@@ -77,11 +77,10 @@ class App{
             if(item.name.toUpperCase().indexOf(searchInput.toUpperCase())==0){
                 this.loadBlock(item)
             }
-            else if(document.querySelector('#main').innerHTML == ''){
-                document.querySelector('#main').innerHTML = `По запиту ${searchInput} нічого не знайдено`
-            }
-
         })
+        if(document.querySelector('#main').innerHTML == ''){
+                document.querySelector('#main').innerHTML = `По запиту ${searchInput} нічого не знайдено`
+        }
     }
 
     allCheckboxOff(){
