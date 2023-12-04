@@ -19,7 +19,7 @@ class App{
             checkbox.addEventListener("change", () => {
                 if(checkbox.checked){
                     this.new_data.push(this.data.filter(item => item.producers__compani === checkbox.dataset.checkbox))
-                    this.filter()
+                    this.filterBox()
                 }
                 if(!checkbox.checked){
                     this.new_data.forEach(item => {
@@ -28,7 +28,7 @@ class App{
                             this.new_data.splice(index, 1)
                         }
                     })
-                    this.filter()
+                    this.filterBox()
                 }
                 if(this.allCheckboxOff()){
                     this.new_data = []
@@ -88,7 +88,7 @@ class App{
         return[...document.querySelectorAll('input[type = checkbox]')].every(checkbox => !checkbox.checked)
     }
 
-    filter(){
+    filterBox(){
         if(this.data){
             this.start() 
             this.new_data.forEach(item => this.loadBlock(item[0]))
@@ -138,17 +138,20 @@ class App{
 
     buyClick(event){
         const basked = document.querySelector('.basket')
+        const myForm = document.querySelector('#myForm')
         basked.showModal()
         basked.querySelector('.close').addEventListener('click',() => basked.close())
-        console.log(event)
-        this.data.forEach(item => {
-            if(item.id == event){
-                document.querySelector('#dialogName').innerHTML = `<p>${item.name}</p>`
-                document.querySelector('#dialogImage').innerHTML = `<img src="${item.image.replace(/server/, '')}"/>`
-                document.querySelector('#dialogInformation').innerHTML = `<a href="http://127.0.0.1:8000/server/${item.id}">Next</a>`
-            }
+        let item = this.data.find(element => element.id == event)
+
+        console.log(item)
             
-        })
+        myForm.querySelector('#dialogName').innerHTML = `<p>${item.name}</p>`
+        myForm.querySelector('#dialogImage').innerHTML = `<img src="${item.image.replace(/server/, '')}"/>`
+        myForm.querySelector('#dialogInformation').innerHTML = `<a href="http://127.0.0.1:8000/server/${item.id}">Next</a>`
+        myForm.querySelector('#formId').value = item.id      
+        myForm.querySelector('#formName').value = item.name      
+        myForm.querySelector('#formProducer').value = item.producers__compani      
+        myForm.querySelector('#formMoney').value = item.money      
     }
 }
 

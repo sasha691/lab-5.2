@@ -17,11 +17,15 @@
     {% block body %}
     {% endblock %}
     <dialog class="basket">
-        <form action="{% url 'basket' %}" method="post">
+        <form action="{% url 'basket' %}" method="post" id="myForm">
             {% csrf_token %}
             <span id="dialogName"></span>
             <span id="dialogImage"></span>
             <span id="dialogInformation"></span>
+            <input id="formId" name="id" type="hidden">
+            <input id="formName" name="name" type="hidden">
+            <input id="formProducer" name="producer" type="hidden">
+            <input id="formMoney" name="money" type="hidden">
             <input type="submit">
         </form>
         <button class="close">&times;</button>

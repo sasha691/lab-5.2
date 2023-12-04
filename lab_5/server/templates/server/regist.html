@@ -1,4 +1,20 @@
 {% extends 'server/layout.html' %}
 
 {% block body %}
+    <div>
+        <form action="{% url 'regist' %}" method="post">
+            {% csrf_token %}
+            <input name="username" type="text" required placeholder="username">
+            <input name="firstname" type="text" required placeholder="firstname">
+            <input name="lastname" type="text" required placeholder="lastname">
+            <input name="password" type="password" required placeholder="password">
+            <input name="email" type="email" required placeholder="email">
+            <input type="submit">
+        </form>
+        <div>
+            {% if message %}
+                {{ message }}
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

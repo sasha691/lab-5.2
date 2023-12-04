@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.core.serializers import serialize
+import json
 
 from .models import Goods, Producers, Basket, User
 # Create your views here.
@@ -25,13 +26,23 @@ def goods(request, goods_id):
 def basket(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
+    user = None
+
     if request.method == "POST":
-        data = request.POST
-        user = request.user
-    return render(request, "server/basket.html", {
-        "info": data,
-        "user":user
-    })
+        tovar_user = request.user
+        tovar_id = request.POST.get('id')
+        tovar_name = request.POST.get('name')
+        tovar_producer = request.POST.get('producer')
+        tovar_money = request.POST.get('money')
+        new_tovar = Basket(user = tovar_user, tovarId = tovar_id, name = tovar_name, producer = tovar_producer, money = tovar_money)
+        new_tovar.save()
+
+        tovar = Basket.objects.all()
+        serialized_tovar = serialize('json', tovar)
+        with open('server/static/json/tovar_data.json', 'w') as file:
+            file.write(serialized_tovar)
+
+    return render(request, "server/basket.html")
 
 def login_view(request):
     if request.method == "POST":
@@ -45,17 +56,17 @@ def login_view(request):
             serialized_users = serialize('json', users)
             with open('server/static/json/user_data.json', 'w') as file:
                 file.write(serialized_users)
-            return HttpResponseRedirect(reverse("basket"))
+            return render(request, "server/login.html")
         else:
             return render(request, "server/login.html", {
-                "message": 'LOX'
+                "logic": not request.user.is_authenticated,
+                "message": 'невірні дані'
             })
-        
-    return render(request, "server/login.html")
 
-def basket_json(request):
-    basket_data = list(Basket.objects.values('id', 'goods__name', 'user__username'))
-    return JsonResponse({'data_basket': basket_data}, safe=False)
+    return render(request, "server/login.html", {
+        'logic': not request.user.is_authenticated
+    })
+    
 
 def logout_view(request):
     logout(request)
@@ -66,8 +77,27 @@ def logout_view(request):
     return HttpResponseRedirect(reverse("index"))
 
 def regist(request):
-    users = User.objects.all()
-    serialized_users = serialize('json', users)
-    with open('server/static/json/user_data.json', 'w') as file:
-        file.write(serialized_users)
-    return
+    if request.method == "POST":
+        new_username = request.POST.get('username')
+        new_firstname = request.POST.get('firstname')
+        new_lastname = request.POST.get('lastname')
+        new_password = request.POST.get('password')
+        new_email = request.POST.get('email')
+        existing_users = User.objects.filter(username = new_username)
+        if existing_users.exists():
+            return render(request, "server/regist.html", {
+                "message": "ім'я користувача вже заняте"
+            })
+        user = User.objects.create_user(username = new_username, password = new_password)
+        user.is_active = True
+        user.last_name = new_lastname
+        user.email = new_email
+        user.first_name = new_firstname
+        user.save()
+
+        users = User.objects.all()
+        serialized_users = serialize('json', users)
+        with open('server/static/json/user_data.json', 'w') as file:
+            file.write(serialized_users)
+        return HttpResponseRedirect(reverse("login"))
+    return render(request, "server/regist.html")
