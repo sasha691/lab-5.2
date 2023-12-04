@@ -59,4 +59,23 @@
   margin: 10% 20%;
 }
 
+nav {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  width: 100%;
+}
+nav input {
+  position: relative;
+  margin-left: 40%;
+}
+nav .Btn {
+  padding-top: 2%;
+  margin-left: 70%;
+}
+nav .Btn button {
+  border-radius: 15px;
+  width: 100px;
+}
+
 /*# sourceMappingURL=style.css.map */
