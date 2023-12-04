@@ -11,7 +11,9 @@ from .models import Goods, Producers, Basket, User
 def index(request):
     # if not request.user.is_authenticated:
     #     return HttpResponseRedirect(reverse("login"))
-    return render(request,"server/index.html")
+    return render(request,"server/index.html", {
+        'user_info': request.user
+    })
 
 def data_json(request):
     goods_data = list(Goods.objects.values('id','name', 'text', 'image', 'producers__compani', 'money'))
@@ -26,7 +28,6 @@ def goods(request, goods_id):
 def basket(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
-    user = None
 
     if request.method == "POST":
         tovar_user = request.user
@@ -34,8 +35,14 @@ def basket(request):
         tovar_name = request.POST.get('name')
         tovar_producer = request.POST.get('producer')
         tovar_money = request.POST.get('money')
-        new_tovar = Basket(user = tovar_user, tovarId = tovar_id, name = tovar_name, producer = tovar_producer, money = tovar_money)
-        new_tovar.save()
+        tovar_numbers = request.POST.get('numbers')
+        if Basket.objects.filter(tovarId = tovar_id).exists():
+            existing_tovar = Basket.objects.get(tovarId=tovar_id)
+            existing_tovar.number += 1
+            existing_tovar.save()
+        else:
+            new_tovar = Basket(user = tovar_user, tovarId = tovar_id, name = tovar_name, producer = tovar_producer, money = tovar_money, number = tovar_numbers)
+            new_tovar.save()
 
         tovar = Basket.objects.all()
         serialized_tovar = serialize('json', tovar)
@@ -56,7 +63,9 @@ def login_view(request):
             serialized_users = serialize('json', users)
             with open('server/static/json/user_data.json', 'w') as file:
                 file.write(serialized_users)
-            return render(request, "server/login.html")
+            return render(request, "server/login.html", {
+                'user_info': request.user
+            })
         else:
             return render(request, "server/login.html", {
                 "logic": not request.user.is_authenticated,
@@ -64,7 +73,8 @@ def login_view(request):
             })
 
     return render(request, "server/login.html", {
-        'logic': not request.user.is_authenticated
+        'logic': not request.user.is_authenticated,
+        'user_info': request.user
     })
     
 

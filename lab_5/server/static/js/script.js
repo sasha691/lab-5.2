@@ -111,27 +111,26 @@ class App{
 
     loadBlock(item){
         document.querySelector('#main').insertAdjacentHTML('beforeend',`
+                
                 <div class="box">
+                <a href="http://127.0.0.1:8000/server/${item.id}" class="next" style="display: inline;">
                     <p>${item.name}</p>
                     <img src="${item.image.replace(/server/, '')}"/>
                     <P class="money">${item.money} UAH</p>
-                    <a href="http://127.0.0.1:8000/server/${item.id}" class="next" style="display: none;">Next</a>
+                    
                     <button data-buy="${item.id}" class="buy" style="display: none;">Buy</button>
+                    </a>
                 </div>
                 `)
     }
 
     mouseOut(item){
         const bthBuy = item.querySelector('.buy')
-        const nextPage = item.querySelector('.next')
-        nextPage.style.display = "none"
         bthBuy.style.display = "none"
     }
 
     mouseOver(item){
         const bthBuy = item.querySelector('.buy')
-        const nextPage = item.querySelector('.next')
-        nextPage.style.display = "inline"
         bthBuy.style.display = "block"
         bthBuy.addEventListener('click',() => this.buyClick(bthBuy.dataset.buy))
     }

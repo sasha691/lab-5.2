@@ -35,4 +35,11 @@
         </div>
         <a href="{% url 'logout' %}">logout</a>
     </main>
+    {% if user_info %}
+        <script>
+            user = "{{ user_info }}"
+            document.cookie = `user=${user}`
+            const cookieUsers = document.cookie.match(/user=[\w]*[0-64]/i) || []
+        </script>
+    {% endif %}
 {% endblock %}

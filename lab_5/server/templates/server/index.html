@@ -10,42 +10,48 @@
 {% endblock %}
 
 {% block body %}
-<div>
-    <h1>my site <small>tut shoci she</small></h1>
-</div>
-</header>
-<nav>
-<div class="search">
-    <input type="text" placeholder="Шукати">
-</div>
-<div>
-    <a href="http://127.0.0.1:8000/server/login/">
-        <button>користувач</button>
-    </form>
-    <a href="http://127.0.0.1:8000/server/basket/">
-        <button>кошик</button>
-    </a>
-</div>  
-</nav>
-<main>
-<div class="sort"> 
-    <p>Виробник</p>
-    <ul>
-        <li><input data-checkbox="Samsung" type="checkbox"> Samsung</li>
-        <li><input data-checkbox="Apple" type="checkbox"> Apple</li>
-        <li><input data-checkbox="Xiaomi" type="checkbox"> Xiaomi</li>
-        <li><input data-checkbox="OPPO" type="checkbox"> OPPO</li>
-        <li><input data-checkbox="Vivo" type="checkbox"> Vivo</li>
-        <li><input data-checkbox="Lenovo" type="checkbox"> Lenovo</li>
-    </ul>
-    <p>Ціна</p>
-    <div id="slider-range"></div>
-    <div id="slider-values">
-        <span id="slider-value1"></span> - <span id="slider-value2"></span>
+    <div>
+        <h1>my site <small>tut shoci she</small></h1>
     </div>
-</div>
-<div  id="main">
-    
-</div>
-</main>
+    </header>
+    <nav>
+    <div class="search">
+        <input type="text" placeholder="Шукати">
+    </div>
+    <div>
+        <a href="http://127.0.0.1:8000/server/login/">
+            <button>користувач</button>
+        </form>
+        <a href="http://127.0.0.1:8000/server/basket/">
+            <button>кошик</button>
+        </a>
+    </div>  
+    </nav>
+    <main>
+    <div class="sort"> 
+        <p>Виробник</p>
+        <ul>
+            <li><input data-checkbox="Samsung" type="checkbox"> Samsung</li>
+            <li><input data-checkbox="Apple" type="checkbox"> Apple</li>
+            <li><input data-checkbox="Xiaomi" type="checkbox"> Xiaomi</li>
+            <li><input data-checkbox="OPPO" type="checkbox"> OPPO</li>
+            <li><input data-checkbox="Vivo" type="checkbox"> Vivo</li>
+            <li><input data-checkbox="Lenovo" type="checkbox"> Lenovo</li>
+        </ul>
+        <p>Ціна</p>
+        <div id="slider-range"></div>
+        <div id="slider-values">
+            <span id="slider-value1"></span> - <span id="slider-value2"></span>
+        </div>
+    </div>
+    <div  id="main">
+        
+    </div>
+    </main>
+    {% if user_info %}
+        <script>
+            user = "{{ user_info }}"
+            document.cookie = `user=${user}`
+        </script>
+    {% endif %}
 {% endblock %}

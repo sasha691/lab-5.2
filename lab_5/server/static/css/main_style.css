@@ -14,6 +14,7 @@ nav {
   display: flex;
   background-color: #838383;
 }
+
 nav div {
   margin-bottom: 2%;
 }
@@ -29,22 +30,33 @@ dialog {
   border: 1px;
   background-color: #949494;
 }
+
 dialog button {
   position: absolute;
   bottom: 90%;
   left: 90%;
 }
+
 dialog #dialogImage img {
   height: 200px;
   border: 1px solid black;
   border-radius: 5%;
 }
+
 dialog #dialogName p {
   margin-left: 20%;
   font-size: 20px;
 }
+
 dialog #dialogInformation a {
   margin: 30%;
 }
+
+a:link, a:hover, a:visited, a:active {
+  text-decoration: none;
+  color: black;
+}
+
+/*# sourceMappingURL=main_style.scss.map */
 
 /*# sourceMappingURL=main_style.css.map */
