@@ -116,9 +116,8 @@ class App{
                     <p>${item.name}</p>
                     <img src="${item.image.replace(/server/, '')}"/>
                     <P class="money">${item.money} UAH</p>
-                    
-                    <button data-buy="${item.id}" class="buy" style="display: none;">Buy</button>
                     </a>
+                    <button data-buy="${item.id}" class="buy" style="display: none;">Buy</button>
                 </div>
                 `)
     }
