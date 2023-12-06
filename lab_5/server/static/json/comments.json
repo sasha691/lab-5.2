@@ -1,0 +1,1 @@
+[{"model": "server.comment", "pk": 17, "fields": {"user": "sasha691", "comment": "hello", "tovarId": 2}}, {"model": "server.comment", "pk": 18, "fields": {"user": "sasha691", "comment": "hello", "tovarId": 2}}, {"model": "server.comment", "pk": 19, "fields": {"user": "sasha691", "comment": "hello45\r\n", "tovarId": 2}}]

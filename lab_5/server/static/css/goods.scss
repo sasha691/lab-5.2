@@ -1,0 +1,36 @@
+$left-text: 50%;
+$left-text-comment: 30%;
+
+main, .box {
+    width: auto;
+    img {
+        height: 500px;
+        margin: 1% 0 0 1%;
+        border: 1px solid black;
+    }
+    .name {
+        margin-left: 15%;
+        font-weight: bold;
+    }
+    .text{
+        margin-left: $left-text;
+        width: 40%;
+        position: relative;
+        bottom: 70%;
+    }
+    .money{
+        margin-left: $left-text;
+        position: relative;
+        bottom: 70%;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+}
+
+#formComment{
+    textarea {
+    }
+    label{
+        margin-left: $left-text-comment;
+    }
+}

@@ -1,8 +1,26 @@
 {% extends "server/layout.html" %}
 
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/goods.css' %}">
+    <script src="{% static 'js/goods.js' %}"></script>
+{% endblock %}
+
 {% block body %}
-    <main>
-        <img src="{{ goods.image }}" alt="">
-        <p>{{ goods.text }}</p>
+    <input type="hidden" value="{{ goods }}">
+    <main>        
     </main>
+    {% if not logic %}
+    <form id="formComment" action="" method="post">
+        {% csrf_token %}
+        <label for="comment">Comment:</label>
+        <textarea name="comment" id="comment" cols="40" rows="3"></textarea>
+        <input type="submit">
+    </form>
+    {% else %}
+    <p>увійдіть в профіль</p>
+    {% endif %}
+    <div id="commentBlock">
+
+    </div>
 {% endblock %}

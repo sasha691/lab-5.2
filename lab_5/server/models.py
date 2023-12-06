@@ -29,3 +29,8 @@ class Basket(models.Model):
     def __str__(self):
         return f"Name:{self.name} Produser:{self.producer} Money:{self.money}"
     
+
+class Comment(models.Model):
+    user = models.CharField(max_length=20)
+    comment = models.TextField()
+    tovarId = models.IntegerField(default=1)

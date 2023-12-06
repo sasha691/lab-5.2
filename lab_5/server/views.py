@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.serializers import serialize
 import json
 
-from .models import Goods, Producers, Basket, User
+from .models import Goods, Producers, Basket, User, Comment
 # Create your views here.
 
 def index(request):
@@ -21,8 +21,24 @@ def data_json(request):
 
 def goods(request, goods_id):
     goods = Goods.objects.get(pk = goods_id)
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            return render(request, "server/goods.html", {
+                "logic": True
+            })
+        else:
+            comment_user = request.user
+            comment_text = request.POST.get('comment')
+            comment_id = goods_id
+            new_coment = Comment(user = comment_user, comment = comment_text, tovarId = comment_id)
+            new_coment.save()
+
+            comments = Comment.objects.all()
+            serialize_coments = serialize('json', comments)
+            with open('server/static/json/comments.json', 'w') as file:
+                file.write(serialize_coments)
     return render(request, "server/goods.html", {
-        "goods": goods
+        "goods": goods.id
     })
 
 def basket(request):
