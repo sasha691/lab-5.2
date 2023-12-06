@@ -1,0 +1,21 @@
+$color-table: rgb(172, 172, 172);
+table{
+    border: 1px solid black;
+    margin: 3% 10% 10% 30%;
+    td, th {
+        padding: 10px;
+        border: 1px solid black;
+        text-align: center;
+    }
+
+    tr:hover{
+        background-color: $color-table;
+        cursor: pointer;
+    }
+    border-collapse: collapse;
+    th{
+        background-color: #949494;
+        cursor: default;
+    }
+
+}

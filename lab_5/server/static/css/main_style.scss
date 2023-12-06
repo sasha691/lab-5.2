@@ -1,33 +1,40 @@
+$color-main: #949494;
+$color-nav: #838383;
+$color-nav-btn: #818181;
+$color-nav-btn-click: #707070;
+
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #949494;
+  background-color: $color-main;
+}
+
+input[type ="checkbox"] {
+  cursor: pointer;
+}
+
+h1, p, ul {
+  cursor: default;
+  user-select: none;
 }
 
 header {
   display: flex;
   justify-content: center;
   text-align: center;
-  background-color: #949494;
-}
-
-nav {
-  display: flex;
-  background-color: #838383;
-}
-nav div {
-  margin-bottom: 2%;
+  background-color: $color-main;
 }
 
 main {
   display: flex;
-  background-color: #949494;
+  background-color: $color-main;
   flex-wrap: wrap;
   align-content: start;
+  min-height:  200px;
 }
 
 dialog {
   border: 1px;
-  background-color: #949494;
+  background-color: $color-main;
 }
 dialog button {
   position: absolute;
@@ -50,6 +57,48 @@ dialog #dialogInformation a {
 a:link, a:hover, a:visited, a:active {
   text-decoration: none;
   color: black;
+}
+
+nav {
+  background-color: $color-nav;
+  display: flex;
+  height: 70px;
+  align-items: center;
+  width: 100%;
+  .Btn {
+    height: 70px;
+    margin-left: 25%;
+    width: 45%;
+    display: flex;
+    justify-content: space-evenly;
+    span{
+      vertical-align: middle;
+      text-align: center;
+      text-align-last: center;
+      display: inline-block;
+      height: 55px;
+      background-color: $color-nav-btn;
+      margin: 1%;
+      border: 1px solid black;
+      border-radius: 15px;
+      width: 100px;
+      cursor: pointer;
+      p{
+        cursor: pointer;
+      }
+    }
+    span:hover {
+      background-color: $color-nav-btn-click;
+    }
+  }
+}
+
+footer {
+  background-color: $color-nav;
+  padding-left: 20%;
+  padding-bottom: 5%;
+  padding-top: 5%;
+  margin-top: 2%;
 }
 
 /*# sourceMappingURL=main_style.scss.map */

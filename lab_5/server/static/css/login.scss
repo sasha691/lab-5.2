@@ -1,3 +1,39 @@
 #main {
     margin:0 30%;
 }
+
+main {
+    .logout{
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        text-align-last: center;
+        height: 25px;
+        background-color: rgb(255, 96, 96);
+        border: 1px solid black;
+        border-radius: 15px;
+        width: 50px;
+        cursor: pointer;
+        p{
+            margin: 0;
+            cursor: pointer;
+        }
+    }
+    .logout:hover{
+        background-color: red;
+    }
+
+    #login{
+        margin: 50%;
+        width: 100px;
+    }
+
+    .regist{
+        
+        margin-left: 5%;
+        p:hover{
+            cursor: pointer;
+            color: rgb(178, 199, 255);
+        }
+    }
+}

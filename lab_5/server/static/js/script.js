@@ -1,8 +1,20 @@
 class App{
     constructor(){
-        self = this
         this.data = null
-        this.new_data = []
+        this.newData = []
+        this.init(this)
+        
+        document.querySelectorAll('input[type = checkbox]').forEach(checkbox => {
+            checkbox.addEventListener("change", () => {
+                this.checkboxChenge(checkbox)
+            })
+        })
+
+        document.querySelector('.search input').addEventListener('change',() => this.search())
+        this.moneyRange(this)
+    }
+
+    init(self){
         $.ajax({
             url: "http://127.0.0.1:8000/server/data/",
             type: "GET",
@@ -14,32 +26,30 @@ class App{
                 }
             }
         })
-        
-        document.querySelectorAll('input[type = checkbox]').forEach(checkbox => {
-            checkbox.addEventListener("change", () => {
-                if(checkbox.checked){
-                    this.new_data.push(this.data.filter(item => item.producers__compani === checkbox.dataset.checkbox))
-                    this.filterBox()
-                }
-                if(!checkbox.checked){
-                    this.new_data.forEach(item => {
-                        if(item[0].producers__compani === checkbox.dataset.checkbox){
-                            let index = this.new_data.indexOf(item)
-                            this.new_data.splice(index, 1)
-                        }
-                    })
-                    this.filterBox()
-                }
-                if(this.allCheckboxOff()){
-                    this.new_data = []
-                    this.start()
-                    this.load()
+    }
+
+    checkboxChenge(checkbox) {
+        if(checkbox.checked){
+            this.newData.push(this.data.filter(item => item.producers__compani === checkbox.dataset.checkbox))
+            this.filterBox()
+        }
+        if(!checkbox.checked){
+            this.newData.forEach(item => {
+                if(item[0].producers__compani === checkbox.dataset.checkbox){
+                    let index = this.newData.indexOf(item)
+                    this.newData.splice(index, 1)
                 }
             })
-        })
+            this.filterBox()
+        }
+        if(this.allCheckboxOff()){
+            this.newData = []
+            this.start()
+            this.load()
+        }
+    }
 
-        document.querySelector('.search input').addEventListener('change',() => this.search())
-
+    moneyRange(self){
         $(function() {
             $("#slider-range").slider({
                 range: true,
@@ -90,7 +100,7 @@ class App{
     filterBox(){
         if(this.data){
             this.start() 
-            this.new_data.forEach(item => this.loadBlock(item[0]))
+            this.newData.forEach(item => this.loadBlock(item[0]))
         } 
     }
 
@@ -112,7 +122,7 @@ class App{
         document.querySelector('#main').insertAdjacentHTML('beforeend',`
                 
                 <div class="box">
-                <a href="http://127.0.0.1:8000/server/${item.id}" class="next" style="display: inline;">
+                    <a href="http://127.0.0.1:8000/server/${item.id}" class="next">
                     <p>${item.name}</p>
                     <img src="${item.image.replace(/server/, '')}"/>
                     <P class="money">${item.money} UAH</p>

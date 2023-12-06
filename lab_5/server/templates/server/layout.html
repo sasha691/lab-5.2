@@ -14,6 +14,20 @@
     <title>Lab 5</title>
 </head>
 <body>
+    <header>
+        <div>
+            <h1>Мій сайт <small>магазин техніки</small></h1>
+        </div>
+    </header>
+    <nav>
+        <div class="Btn">
+            <span onclick="location.href='http://127.0.0.1:8000/server/'"><p>головна</p></span>
+            <span onclick="location.href='http://127.0.0.1:8000/server/basket/'"><p>кошик</p></span>
+            <span onclick="location.href='http://127.0.0.1:8000/server/login/'"><p>користувач</p></span>
+        </div>
+        {% block  nav %}
+        {% endblock %}
+    </nav>
     {% block body %}
     {% endblock %}
     <dialog class="basket">
@@ -31,5 +45,10 @@
         </form>
         <button class="close">&times;</button>
     </dialog>
+    <footer>
+        <p>email: komp9349@gmail.com</p>
+        <p>user: sasha691</p>
+        <p>progect: lab 5</p>
+    </footer>
 </body>
 </html>

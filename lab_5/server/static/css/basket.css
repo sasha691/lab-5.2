@@ -1,0 +1,20 @@
+table {
+  border: 1px solid black;
+  margin: 3% 10% 10% 30%;
+  border-collapse: collapse;
+}
+table td, table th {
+  padding: 10px;
+  border: 1px solid black;
+  text-align: center;
+}
+table tr:hover {
+  background-color: #acacac;
+  cursor: pointer;
+}
+table th {
+  background-color: #949494;
+  cursor: default;
+}
+
+/*# sourceMappingURL=basket.css.map */

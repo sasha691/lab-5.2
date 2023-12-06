@@ -2,4 +2,35 @@
   margin: 0 30%;
 }
 
+main .logout {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  text-align-last: center;
+  height: 25px;
+  background-color: #ff6060;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 50px;
+  cursor: pointer;
+}
+main .logout p {
+  margin: 0;
+  cursor: pointer;
+}
+main .logout:hover {
+  background-color: red;
+}
+main #login {
+  margin: 50%;
+  width: 100px;
+}
+main .regist {
+  margin-left: 5%;
+}
+main .regist p:hover {
+  cursor: pointer;
+  color: #b2c7ff;
+}
+
 /*# sourceMappingURL=login.css.map */

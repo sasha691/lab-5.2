@@ -9,25 +9,13 @@
     <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}
 
-{% block body %}
-    <header>
-    <div>
-        <h1>my site <small>tut shoci she</small></h1>
-    </div>
-    </header>
-    <nav>
+{% block nav %}
     <div class="search">
         <input type="text" placeholder="Шукати">
     </div>
-    <div class="Btn">
-        <a href="http://127.0.0.1:8000/server/login/">
-            <button>користувач</button>
-        </form>
-        <a href="http://127.0.0.1:8000/server/basket/">
-            <button>кошик</button>
-        </a>
-    </div>  
-    </nav>
+{% endblock %}
+
+{% block body %} 
     <main>
     <div class="sort"> 
         <p>Виробник</p>

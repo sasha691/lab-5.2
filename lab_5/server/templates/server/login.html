@@ -23,7 +23,7 @@
                         <input type="submit" value="login">
                     </form>
                 </div>
-                <span><a href="{% url 'regist' %}">створити акаунт</a></span>
+                <span class="regist" onclick="location.href='http://127.0.0.1:8000/server/regist/'"><p>створити акаунт</p></span>
             {% else %}
                 <div id="info">
                     <p>username: {{ user_info }}</p>
@@ -31,9 +31,10 @@
                     <P>firstname: {{ user_info.first_name }}</P>
                     <p>email: {{user_info.email }}</p>
                 </div>
+                <span class="logout" onclick="location.href='http://127.0.0.1:8000/server/logout/'"><p>вихіт</p></span>
             {% endif %}
         </div>
-        <a href="{% url 'logout' %}">logout</a>
+        
     </main>
     {% if user_info %}
         <script>
