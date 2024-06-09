@@ -21,6 +21,7 @@ class App{
             dataType: "json",
             success: function(response){
                 if (Array.isArray(response.data) && response.data.length > 0) {
+                    console.log(response)
                     self.data = response.data;
                     self.load()
                 }
